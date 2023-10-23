@@ -70,12 +70,12 @@ export class DateChip extends LitElement {
 
   dateToMonth() {
     var inputDate = new Date(this.date);
-    month = inputDate.toLocaleDateString({month:"short"});
+    this.month = inputDate.toLocaleDateString('en-us', { month:"short" });
   }
 
   dateToDay() {
     var inputDate = new Date(this.date);
-    day = inputDate.toLocaleDateString({day:"numeric"});
+    this.day = inputDate.toLocaleDateString('en-us', { day:"numeric" });
   }
 
   render() {
