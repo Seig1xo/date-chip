@@ -3,7 +3,7 @@ import { LitElement, html, css } from 'lit';
 export class DateChip extends LitElement {
   static get properties() {
     return {
-      date: { type: String },
+      date: { type: Date },
       month: { type: String },
       day: { type: Number }
     };
@@ -11,10 +11,12 @@ export class DateChip extends LitElement {
 
   static get styles() {
     return css`
-      :host {
-        display: block;
+      .container {
+        display: flex;
+        flex-direction: column;
+        float: left;
         box-sizing: border-box;
-        font-family: Roboto, sans-serif;
+        font-family: 'Roboto', sans-serif;
         margin-right: 10px;
         line-height: 24px;
         text-align: center;
@@ -23,6 +25,7 @@ export class DateChip extends LitElement {
         background-color: #1E407C;
         background-clip: border-box;
         background-origin: padding-box;
+        background-size: auto;
         border-bottom-left-radius: 2px;
         border-bottom-right-radius: 2px;
         border-top-left-radius: 0px;
@@ -41,6 +44,7 @@ export class DateChip extends LitElement {
         background-color: white;
         background-clip: border-box;
         background-origin: padding-box;
+        background-size: auto;
         border-bottom-left-radius: 2px;
         border-bottom-right-radius: 2px;
         border-top-left-radius: 0px;
@@ -64,10 +68,24 @@ export class DateChip extends LitElement {
     this.day = 1;
   }
 
+  dateToMonth() {
+    var inputDate = new Date(this.date);
+    month = inputDate.toLocaleDateString({month:"short"});
+  }
+
+  dateToDay() {
+    var inputDate = new Date(this.date);
+    day = inputDate.toLocaleDateString({day:"numeric"});
+  }
+
   render() {
+    this.dateToMonth();
+    this.dateToDay();
     return html`
-    <span class="month">${this.month}</span>
-    <span class="day">${this.day}</span>
+    <div class="container">
+      <span class="month">${this.month}</span>
+      <span class="day">${this.day}</span>
+    </div>
     `;
   }
 }
