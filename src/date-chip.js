@@ -3,7 +3,7 @@ import { LitElement, html, css } from 'lit';
 export class DateChip extends LitElement {
   static get properties() {
     return {
-      date: { type: Date },
+      date: { type: String },
       month: { type: String },
       day: { type: Number }
     };
@@ -11,6 +11,9 @@ export class DateChip extends LitElement {
 
   static get styles() {
     return css`
+      :host {
+        display: block;
+      }
       .container {
         display: flex;
         flex-direction: column;
